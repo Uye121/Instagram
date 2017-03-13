@@ -9,13 +9,12 @@
 import UIKit
 import Parse
 
-class ImagePickerViewController: UIImagePickerController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
+class ImagePickerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var descriptionField: UITextView!
+    @IBOutlet weak var descriptionField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var photoShareButton: UIButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,6 @@ class ImagePickerViewController: UIImagePickerController, UIImagePickerControlle
         descriptionField.delegate = self
         
         // Do any additional setup after loading the view.
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +60,40 @@ class ImagePickerViewController: UIImagePickerController, UIImagePickerControlle
     
     @IBAction func onTap(_ sender: Any) {
         self.view.endEditing(true)
+    }
+    
+    @IBAction func cancelTap(_ sender: Any) {
+        self.clearPicker()
+    }
+    
+    @IBAction func submitTap(_ sender: Any) {
+        if let image = photoShareButton.backgroundImage(for: .normal) {
+            
+            Post.postUserImage(image: image, withCaption: descriptionField.text, withCompletion: { (post: PFObject?, error: Error?) in
+                if post != nil {
+                    print("success")
+                    self.clearPicker()
+                    
+                    let homeVC = self.tabBarController?.viewControllers?[0] as! HomeViewController
+                    homeVC.posts?.insert(post!, at: 0)
+                    homeVC.tableView.reloadData()
+                    
+                    self.tabBarController?.selectedIndex = 0
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+        }
+    }
+    
+    
+    
+    func clearPicker() {
+        descriptionField.text = ""
+        submitButton.isEnabled = false
+        cancelButton.isEnabled = false
+        photoShareButton.setTitle("Tap to share photo", for: .normal)
+        photoShareButton.setBackgroundImage(nil, for: .normal)
     }
 
     /*

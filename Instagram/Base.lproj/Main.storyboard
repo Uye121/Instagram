@@ -87,23 +87,29 @@
                                     <action selector="tapPhotoButton:" destination="Cnt-HK-vXq" eventType="touchUpInside" id="P4D-nd-aOr"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nLa-hh-Vqa">
-                                <rect key="frame" x="16" y="195" width="288" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjN-d7-zO9">
                                 <rect key="frame" x="16" y="331" width="49" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitTap:" destination="Cnt-HK-vXq" eventType="touchUpInside" id="Tl9-qq-I4R"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuf-FB-Saz">
                                 <rect key="frame" x="256" y="331" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelTap:" destination="Cnt-HK-vXq" eventType="touchUpInside" id="Izv-Pd-bQH"/>
+                                </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aay-Aj-Bsf">
+                                <rect key="frame" x="16" y="195" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -114,7 +120,7 @@
                     <tabBarItem key="tabBarItem" title="Post" id="5cf-o3-ETe"/>
                     <connections>
                         <outlet property="cancelButton" destination="Cuf-FB-Saz" id="yMh-Vd-HGt"/>
-                        <outlet property="descriptionField" destination="nLa-hh-Vqa" id="HRq-FU-Ke9"/>
+                        <outlet property="descriptionField" destination="aay-Aj-Bsf" id="RSI-22-tmG"/>
                         <outlet property="photoShareButton" destination="WzG-Y9-rDl" id="swf-4o-iHw"/>
                         <outlet property="submitButton" destination="FjN-d7-zO9" id="FKJ-si-mb6"/>
                     </connections>
@@ -131,7 +137,7 @@
         <!--Home-->
         <scene sceneID="VQF-pu-U75">
             <objects>
-                <viewController id="ybz-lE-jJd" sceneMemberID="viewController">
+                <viewController id="ybz-lE-jJd" customClass="HomeViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6qn-6P-Bta"/>
                         <viewControllerLayoutGuide type="bottom" id="6Mi-ns-qXl"/>
@@ -139,18 +145,81 @@
                     <view key="view" contentMode="scaleToFill" id="2Gl-ki-aeJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="189" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zlf-Gh-QxL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="189" id="BAG-7f-lLq" customClass="PostCell" customModule="Instagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="189"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BAG-7f-lLq" id="wG6-gU-oCv">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="188"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HPL-7N-tEm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="320" id="8WL-Bi-uGu"/>
+                                                        <constraint firstAttribute="height" constant="128" id="FvZ-WV-Nz3"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzD-VK-xsy">
+                                                    <rect key="frame" x="0.0" y="126" width="320" height="62"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTq-Iq-q3j">
+                                                            <rect key="frame" x="8" y="0.0" width="304" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="WTq-Iq-q3j" secondAttribute="trailing" constant="8" id="89k-7B-MGc"/>
+                                                        <constraint firstItem="WTq-Iq-q3j" firstAttribute="leading" secondItem="EzD-VK-xsy" secondAttribute="leading" constant="8" id="LUd-YD-Xte"/>
+                                                        <constraint firstItem="WTq-Iq-q3j" firstAttribute="top" secondItem="EzD-VK-xsy" secondAttribute="top" id="OPV-ty-YlK"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WTq-Iq-q3j" secondAttribute="bottom" constant="41" id="Z0E-pM-kqA"/>
+                                                        <constraint firstAttribute="width" constant="320" id="cBy-01-CVN"/>
+                                                        <constraint firstItem="WTq-Iq-q3j" firstAttribute="centerX" secondItem="EzD-VK-xsy" secondAttribute="centerX" id="gSM-gH-V2b"/>
+                                                        <constraint firstAttribute="height" constant="62" id="x2x-QE-Dpf"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EzD-VK-xsy" firstAttribute="top" secondItem="wG6-gU-oCv" secondAttribute="top" constant="126" id="00V-7q-4OH"/>
+                                                <constraint firstItem="EzD-VK-xsy" firstAttribute="leading" secondItem="wG6-gU-oCv" secondAttribute="leading" id="Hcj-To-APN"/>
+                                                <constraint firstAttribute="trailing" secondItem="HPL-7N-tEm" secondAttribute="trailing" id="ITq-6Z-NfR"/>
+                                                <constraint firstAttribute="trailing" secondItem="EzD-VK-xsy" secondAttribute="trailing" id="SiB-kp-HAw"/>
+                                                <constraint firstItem="HPL-7N-tEm" firstAttribute="leading" secondItem="wG6-gU-oCv" secondAttribute="leading" id="dNn-ca-kBa"/>
+                                                <constraint firstItem="HPL-7N-tEm" firstAttribute="top" secondItem="wG6-gU-oCv" secondAttribute="top" id="eDA-Ms-Rmr"/>
+                                                <constraint firstAttribute="bottom" secondItem="EzD-VK-xsy" secondAttribute="bottom" id="oK8-zz-RuK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionLabel" destination="WTq-Iq-q3j" id="k4F-tr-euH"/>
+                                            <outlet property="imagePost" destination="HPL-7N-tEm" id="FGN-Oe-6NY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="GDC-UU-sQu"/>
+                    <connections>
+                        <outlet property="tableView" destination="zlf-Gh-QxL" id="jHg-Bh-o1x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiD-EH-Kw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1864" y="-195"/>
+            <point key="canvasLocation" x="1863.75" y="-195.42253521126761"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rL8-uf-NtH">
             <objects>
-                <tabBarController id="Gle-5t-dS9" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="InstagramTabBarController" id="Gle-5t-dS9" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="pB1-jT-fa0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
