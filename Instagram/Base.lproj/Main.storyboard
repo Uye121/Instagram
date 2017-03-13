@@ -49,7 +49,7 @@
                                 <state key="normal" title="Sign In"/>
                                 <connections>
                                     <action selector="onSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6lG-nm-5wZ"/>
-                                    <segue destination="dQ3-Rn-WZN" kind="presentation" identifier="loginSegue" id="4bw-FU-dlP"/>
+                                    <segue destination="Gle-5t-dS9" kind="presentation" identifier="loginSegue" id="0hD-X6-O1n"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -64,23 +64,106 @@
             </objects>
             <point key="canvasLocation" x="136.875" y="137.32394366197184"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="N7a-4v-99f">
+        <!--Post-->
+        <scene sceneID="g29-RL-jNA">
             <objects>
-                <viewController id="dQ3-Rn-WZN" sceneMemberID="viewController">
+                <viewController id="Cnt-HK-vXq" customClass="ImagePickerViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Qud-io-FEN"/>
-                        <viewControllerLayoutGuide type="bottom" id="sl4-9O-4kT"/>
+                        <viewControllerLayoutGuide type="top" id="y5g-KO-3AD"/>
+                        <viewControllerLayoutGuide type="bottom" id="UpS-fJ-ZWU"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="B08-gb-Cfm">
+                    <view key="view" contentMode="scaleToFill" id="znt-lW-m4Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzG-Y9-rDl">
+                                <rect key="frame" x="16" y="78" width="288" height="109"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.65004006410000004" green="0.65004006410000004" blue="0.65004006410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Tap to share photo">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapPhotoButton:" destination="Cnt-HK-vXq" eventType="touchUpInside" id="P4D-nd-aOr"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nLa-hh-Vqa">
+                                <rect key="frame" x="16" y="195" width="288" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjN-d7-zO9">
+                                <rect key="frame" x="16" y="331" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuf-FB-Saz">
+                                <rect key="frame" x="256" y="331" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="nar-mG-Hvi" appends="YES" id="RsI-I4-7Zn"/>
+                        </connections>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Post" id="5cf-o3-ETe"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="Cuf-FB-Saz" id="yMh-Vd-HGt"/>
+                        <outlet property="descriptionField" destination="nLa-hh-Vqa" id="HRq-FU-Ke9"/>
+                        <outlet property="photoShareButton" destination="WzG-Y9-rDl" id="swf-4o-iHw"/>
+                        <outlet property="submitButton" destination="FjN-d7-zO9" id="FKJ-si-mb6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lOX-GB-Vp8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="nar-mG-Hvi">
+                    <connections>
+                        <action selector="onTap:" destination="Cnt-HK-vXq" id="GOv-uq-1Nf"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1863.75" y="470.07042253521126"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="VQF-pu-U75">
+            <objects>
+                <viewController id="ybz-lE-jJd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6qn-6P-Bta"/>
+                        <viewControllerLayoutGuide type="bottom" id="6Mi-ns-qXl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Gl-ki-aeJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" id="GDC-UU-sQu"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Re4-Ez-h8a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SiD-EH-Kw3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="885" y="137"/>
+            <point key="canvasLocation" x="1864" y="-195"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="rL8-uf-NtH">
+            <objects>
+                <tabBarController id="Gle-5t-dS9" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="pB1-jT-fa0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ybz-lE-jJd" kind="relationship" relationship="viewControllers" id="hap-bH-TE5"/>
+                        <segue destination="Cnt-HK-vXq" kind="relationship" relationship="viewControllers" id="ENo-Ri-FXO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dvc-gF-zc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="851" y="137"/>
         </scene>
     </scenes>
 </document>

@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onSignIn(_ sender: Any) {
+        
         PFUser.logInWithUsername(inBackground: usernameField.text!, password: passwordField.text!) { (user, error) in
             if user != nil {
                 print("logged in")
@@ -40,13 +41,14 @@ class LoginViewController: UIViewController {
         newUser.username = usernameField.text
         newUser.password = passwordField.text
         
-        newUser.signUpInBackground { (success, error) in
-            if(success) {
+        newUser.signUpInBackground { (success: Bool, error: Error?) in
+            if success {
                 print("new user created")
             } else {
                 print(error?.localizedDescription)
             }
         }
+        
     }
     
     /*
